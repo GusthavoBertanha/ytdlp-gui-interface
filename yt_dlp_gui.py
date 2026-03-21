@@ -753,10 +753,18 @@ class DownloaderApp:
             return '"' + s.replace('"', '\\"') + '"'
         return s
 
-    def bin_dir(self) -> Path:
-        p = self.app_dir() / "arquivos"
-        p.mkdir(exist_ok=True)
-        return p
+    def app_dir(self) -> Path:
+        if getattr(sys, "frozen", False):
+
+            p = Path(sys.executable).resolve().parent
+
+            # macOS .app → subir 3 níveis
+            if p.name == "MacOS" and p.parent.name == "Contents":
+                return p.parent.parent.parent
+
+            return p
+
+        return Path(__file__).resolve().parent
 
 def main() -> None:
     root = tk.Tk()

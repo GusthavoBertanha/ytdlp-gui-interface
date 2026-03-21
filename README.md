@@ -13,7 +13,7 @@ python -m PyInstaller --noconsole --onefile yt_dlp_gui.py
 ### macOS
 
 ```bash
-python3 -m PyInstaller --windowed --onefile yt_dlp_gui.py
+pyinstaller --windowed --onefile yt_dlp_gui.py
 ```
 
 ---
@@ -33,5 +33,5 @@ python -m PyInstaller --noconsole --onefile yt_dlp_gui.py
 ### macOS
 
 ```bash
-python3 -m PyInstaller --windowed --onefile yt_dlp_gui.py
+pyinstaller --windowed --onefile yt_dlp_gui.py
 ```
