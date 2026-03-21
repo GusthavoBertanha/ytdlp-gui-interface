@@ -14,6 +14,8 @@ import zipfile
 from pathlib import Path
 from urllib.request import Request, urlopen
 
+import webbrowser
+
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 from tkinter.scrolledtext import ScrolledText
@@ -149,6 +151,7 @@ class DownloaderApp:
         ttk.Button(btn_row, text="Atualizar ffmpeg", command=self.update_ffmpeg_async).pack(side="left", padx=(8, 0))
         ttk.Button(btn_row, text="Atualizar tudo", command=self.update_all_async).pack(side="left", padx=(8, 0))
         ttk.Button(btn_row, text="Limpar logs", command=self.clear_logs).pack(side="left", padx=(8, 0))
+        ttk.Button(btn_row, text="Github", command=self.open_github).pack(side="left", padx=(8, 0))
 
         status_frame = ttk.LabelFrame(frame, text="Logs")
         status_frame.pack(fill="both", expand=True)
@@ -180,6 +183,9 @@ class DownloaderApp:
         self.log_text.configure(state="normal")
         self.log_text.delete("1.0", "end")
         self.log_text.configure(state="disabled")
+
+    def open_github(self) -> None:
+        webbrowser.open("https://github.com/GusthavoBertanha/ytdlp-gui-interface")
 
     # =========================
     # NETWORK / FILE HELPERS
