@@ -1,4 +1,3 @@
-````md
 # yt-dlp GUI Interface
 
 A simple graphical interface for **yt-dlp**, designed to make video and audio downloads easier without using the command line. The application automatically manages required tools such as yt-dlp and ffmpeg, providing a practical and portable solution for Windows and macOS.
@@ -6,6 +5,7 @@ A simple graphical interface for **yt-dlp**, designed to make video and audio do
 ## Build commands
 
 ### Windows
+
 ```bash
 python -m PyInstaller --noconsole --onefile yt_dlp_gui.py
 ````
@@ -34,7 +34,4 @@ python -m PyInstaller --noconsole --onefile yt_dlp_gui.py
 
 ```bash
 python3 -m PyInstaller --windowed --onefile yt_dlp_gui.py
-```
-
-```
 ```
