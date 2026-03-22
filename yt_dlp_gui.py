@@ -50,7 +50,6 @@ class DownloaderApp:
         self.ffmpeg_version_var = tk.StringVar(value="ffmpeg: desconhecido")
 
         self.mode_var = tk.StringVar(value="video_best")
-        self.bin_dir()
 
         self.build_ui()
         self.root.after(100, self.flush_logs)
@@ -61,8 +60,25 @@ class DownloaderApp:
     # =========================
     def app_dir(self) -> Path:
         if getattr(sys, "frozen", False):
-            return Path(sys.executable).resolve().parent
+            p = Path(sys.executable).resolve().parent
+
+            # macOS .app/Contents/MacOS -> voltar para pasta que contém o .app
+            if p.name == "MacOS" and p.parent.name == "Contents":
+                return p.parent.parent.parent
+
+            return p
+
         return Path(__file__).resolve().parent
+
+    def bin_dir(self) -> Path:
+        if getattr(sys, "frozen", False):
+            base = Path(sys.executable).resolve().parent
+        else:
+            base = Path(__file__).resolve().parent
+
+        p = base / "arquivos"
+        p.mkdir(exist_ok=True)
+        return p
 
     def get_default_download_dir(self) -> Path:
         p = self.app_dir() / "arquivos"
@@ -752,19 +768,6 @@ class DownloaderApp:
         if " " in s or '"' in s:
             return '"' + s.replace('"', '\\"') + '"'
         return s
-
-    def app_dir(self) -> Path:
-        if getattr(sys, "frozen", False):
-
-            p = Path(sys.executable).resolve().parent
-
-            # macOS .app → subir 3 níveis
-            if p.name == "MacOS" and p.parent.name == "Contents":
-                return p.parent.parent.parent
-
-            return p
-
-        return Path(__file__).resolve().parent
 
 def main() -> None:
     root = tk.Tk()
