@@ -2,6 +2,12 @@
 
 A simple graphical interface for **yt-dlp**, designed to make video and audio downloads easier without using the command line. The application automatically manages required tools such as yt-dlp and ffmpeg, providing a practical and portable solution for Windows and macOS.
 
+<p align="center">
+  <a href="https://github.com/GusthavoBertanha/ytdlp-gui-interface/releases/latest">
+    <img src="https://img.shields.io/badge/⬇️_Download-YTDLP_GUI_Interface-blue?style=for-the-badge" />
+  </a>
+</p>
+
 ## Build commands
 
 ### Windows
